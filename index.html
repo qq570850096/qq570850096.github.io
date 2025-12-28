@@ -386,6 +386,8 @@
       height: 65vh;
       min-height: 400px;
       max-height: 700px;
+      /* 关键：允许内容宽度自适应 */
+      width: 100%;
       padding: 24px 48px 24px 24px;
       /* 水平滚动查看更多内容 */
       overflow-x: auto;
@@ -395,6 +397,8 @@
       text-rendering: optimizeLegibility;
       /* 确保从右侧开始 */
       text-align: start;
+      /* 确保滚动条可见 */
+      scrollbar-width: thin;
     }
 
     /* 竖排版滚动条样式优化 */
@@ -551,15 +555,22 @@
     }
 
     .card-wrapper {
-      perspective: 1000px;
-      height: 360px;
+      perspective: 1500px;
+      height: 400px;
+      position: relative;
+    }
+
+    /* 悬停时贺卡轻微上浮 */
+    .card-wrapper:hover {
+      transform: translateY(-8px);
+      transition: transform 0.3s ease;
     }
 
     .card-inner {
       position: relative;
       width: 100%;
       height: 100%;
-      transition: transform 0.8s;
+      transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
       transform-style: preserve-3d;
       cursor: pointer;
     }
@@ -573,36 +584,117 @@
       width: 100%;
       height: 100%;
       backface-visibility: hidden;
-      border-radius: 16px;
-      box-shadow: var(--shadow-card);
+      border-radius: 20px;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      padding: 32px;
+      padding: 40px;
+      overflow: hidden;
     }
 
     .card-front {
       background: linear-gradient(135deg, var(--color-paper) 0%, #f8f5ed 100%);
       border: 3px solid;
+      position: relative;
     }
 
+    /* 竹青风格 - 教师节 */
     .card-front.style-bamboo {
       border-color: var(--color-bamboo);
-      background-image:
-        linear-gradient(135deg, var(--color-paper) 0%, #e8f5e9 100%);
+      background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
     }
 
+    .card-front.style-bamboo::before {
+      content: '🎋';
+      position: absolute;
+      font-size: 8rem;
+      opacity: 0.15;
+      top: -20px;
+      right: -20px;
+      animation: float 6s ease-in-out infinite;
+    }
+
+    /* 朱红风格 - 春节 */
     .card-front.style-red {
       border-color: var(--color-red);
-      background-image:
-        linear-gradient(135deg, var(--color-paper) 0%, #ffebee 100%);
+      background: linear-gradient(135deg, #ffebee 0%, #ffcdd2 100%);
     }
 
+    .card-front.style-red::before {
+      content: '🧧';
+      position: absolute;
+      font-size: 8rem;
+      opacity: 0.2;
+      bottom: -20px;
+      left: -20px;
+      animation: rotate 10s linear infinite;
+    }
+
+    /* 月白风格 - 中秋 */
     .card-front.style-moon {
       border-color: #d4a574;
-      background-image:
-        linear-gradient(135deg, var(--color-moon) 0%, #fff8e1 100%);
+      background: linear-gradient(135deg, #fff8e1 0%, #ffecb3 100%);
+    }
+
+    .card-front.style-moon::before {
+      content: '🌕';
+      position: absolute;
+      font-size: 8rem;
+      opacity: 0.2;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      animation: glow 3s ease-in-out infinite alternate;
+    }
+
+    /* 圣诞风格 */
+    .card-front.style-christmas {
+      border-color: #2e7d32;
+      background: linear-gradient(135deg, #1b5e20 0%, #4caf50 100%);
+      position: relative;
+      overflow: visible;
+    }
+
+    .card-front.style-christmas::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background:
+        radial-gradient(circle at 20% 30%, rgba(255, 255, 255, 0.3) 2px, transparent 2px),
+        radial-gradient(circle at 60% 70%, rgba(255, 255, 255, 0.3) 3px, transparent 3px),
+        radial-gradient(circle at 80% 10%, rgba(255, 255, 255, 0.3) 2px, transparent 2px),
+        radial-gradient(circle at 40% 90%, rgba(255, 255, 255, 0.3) 3px, transparent 3px);
+      background-size: 100% 100%;
+      animation: snowfall 15s linear infinite;
+      pointer-events: none;
+    }
+
+    /* 元旦风格 */
+    .card-front.style-newyear {
+      border-color: #ff6f00;
+      background: linear-gradient(135deg, #1a237e 0%, #283593 100%);
+      position: relative;
+    }
+
+    .card-front.style-newyear::before {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      background:
+        radial-gradient(circle at 30% 40%, rgba(255, 215, 0, 0.6) 4px, transparent 4px),
+        radial-gradient(circle at 70% 60%, rgba(255, 107, 107, 0.6) 6px, transparent 6px),
+        radial-gradient(circle at 50% 20%, rgba(66, 165, 245, 0.6) 5px, transparent 5px);
+      background-size: 200% 200%;
+      animation: fireworks 4s ease-in-out infinite;
+      pointer-events: none;
     }
 
     .card-back {
@@ -630,9 +722,24 @@
       color: #d4a574;
     }
 
+    .card-front.style-christmas .card-front-title {
+      color: #ffffff;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    }
+
+    .card-front.style-newyear .card-front-title {
+      color: #ffd700;
+      text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+    }
+
     .card-festival {
       font-size: 1rem;
       color: var(--color-muted);
+    }
+
+    .card-front.style-christmas .card-festival,
+    .card-front.style-newyear .card-festival {
+      color: rgba(255, 255, 255, 0.9);
     }
 
     .card-back-content {
@@ -641,6 +748,56 @@
       color: var(--color-ink);
       text-align: center;
       white-space: pre-line;
+    }
+
+    /* ==================== Animations ==================== */
+    @keyframes float {
+      0%, 100% {
+        transform: translateY(0px);
+      }
+      50% {
+        transform: translateY(-20px);
+      }
+    }
+
+    @keyframes rotate {
+      0% {
+        transform: rotate(0deg);
+      }
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+
+    @keyframes glow {
+      0% {
+        opacity: 0.2;
+        filter: brightness(1);
+      }
+      100% {
+        opacity: 0.4;
+        filter: brightness(1.3);
+      }
+    }
+
+    @keyframes snowfall {
+      0% {
+        background-position: 0 0, 0 0, 0 0, 0 0;
+      }
+      100% {
+        background-position: 500px 1000px, -400px 800px, 600px 1200px, -300px 900px;
+      }
+    }
+
+    @keyframes fireworks {
+      0%, 100% {
+        opacity: 0.6;
+        transform: scale(1);
+      }
+      50% {
+        opacity: 1;
+        transform: scale(1.2);
+      }
     }
 
     /* ==================== Utilities ==================== */
@@ -762,6 +919,11 @@
 
       .cards-grid {
         grid-template-columns: 1fr;
+        gap: 32px;
+      }
+
+      .card-wrapper {
+        height: 360px;
       }
     }
   </style>

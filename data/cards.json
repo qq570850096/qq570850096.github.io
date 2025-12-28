@@ -16,7 +16,23 @@
     "content": "海上生明月，天涯共此時。\n願花常好，人常健，月常圓。"
   },
   {
+    "id": "card-christmas-2025",
+    "title": "聖誕快樂",
+    "festival": "聖誕節",
+    "date": "2025-12-25",
+    "style": "christmas",
+    "content": "銀裝素裹迎聖誕，\n瑞雪紛飛報平安。\n願你聖誕喜樂，\n新年美滿如意。"
+  },
+  {
     "id": "card-newyear-2026",
+    "title": "元旦快樂",
+    "festival": "元旦",
+    "date": "2026-01-01",
+    "style": "newyear",
+    "content": "辭舊迎新歲月新，\n春風化雨萬象更。\n願新的一年，\n福星高照，萬事如意。"
+  },
+  {
+    "id": "card-spring-2026",
     "title": "歲歲平安",
     "festival": "春節",
     "date": "2026-02-17",
