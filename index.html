@@ -12,7 +12,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&family=Noto+Serif+TC:wght@400;500;700&display=swap" rel="stylesheet">
 
   <!-- Marked.js for Markdown parsing -->
-  <script src="https://cdn.jsdelivr.net/npm/marked@11.1.1/marked.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/marked@4.3.0/marked.min.js"></script>
 
   <style>
     /* ==================== CSS Variables ==================== */
@@ -840,7 +840,10 @@
         try {
           const response = await fetch(letter.file);
           const markdown = await response.text();
-          const html = marked.parse(markdown);
+          // Use marked function (compatible with v4.x)
+          const html = typeof marked !== 'undefined'
+            ? (marked.parse ? marked.parse(markdown) : marked(markdown))
+            : markdown.replace(/\n/g, '<br>');
 
           document.getElementById('letter-detail-title').textContent = letter.title;
           document.getElementById('letter-detail-date').textContent = letter.date;
@@ -972,6 +975,13 @@
 
     // ==================== Initialize ====================
     document.addEventListener('DOMContentLoaded', () => {
+      // Check if marked.js is loaded
+      if (typeof marked === 'undefined') {
+        console.warn('marked.js not loaded, letter content will display as plain text');
+      } else {
+        console.log('marked.js loaded successfully');
+      }
+
       passwordGate.init();
     });
   </script>
