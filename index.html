@@ -342,21 +342,22 @@
       background: var(--color-paper-alpha);
       backdrop-filter: blur(10px);
       border-radius: 16px;
-      padding: 48px;
+      padding: 40px 32px;
       box-shadow: var(--shadow-soft);
-      max-width: 900px;
+      max-width: 95%;
+      width: 100%;
       margin: 0 auto;
-      /* 添加古籍纹理效果 */
       position: relative;
       border: 1px solid rgba(140, 107, 93, 0.2);
+      overflow: hidden;
     }
 
-    /* 模拟古籍装订线 */
+    /* 模拟古籍装订线（右侧）*/
     .letter-detail::before {
       content: '';
       position: absolute;
       top: 0;
-      right: 24px;
+      right: 16px;
       bottom: 0;
       width: 2px;
       background: repeating-linear-gradient(
@@ -367,67 +368,82 @@
         rgba(140, 107, 93, 0.3) 22px
       );
       pointer-events: none;
-    }
-
-    .letter-detail-header {
-      text-align: center;
-      margin-bottom: 32px;
-      padding-bottom: 24px;
-      border-bottom: 2px solid rgba(92, 64, 51, 0.2);
-    }
-
-    .letter-detail-title {
-      font-size: 2rem;
-      color: var(--color-brand-deep);
-      margin-bottom: 12px;
-      font-family: 'Ma Shan Zheng', cursive;
-    }
-
-    .letter-detail-date {
-      color: var(--color-muted);
-      font-size: 1rem;
+      z-index: 1;
     }
 
     .letter-detail-content {
       /* 竖排版：从右到左，从上到下 */
       writing-mode: vertical-rl;
-      /* 文字方向：从上到下 */
-      text-orientation: mixed;
-      /* 列间距（相当于传统的行距）*/
-      column-gap: 2rem;
+      /* 文字方向：全部竖向显示 */
+      text-orientation: upright;
       /* 字间距（垂直方向）*/
-      line-height: 2.2;
-      /* 字符间距（水平方向，即列内字距）*/
-      letter-spacing: 0.1em;
-      font-size: 1.2rem;
+      line-height: 2.5;
+      /* 字符间距 */
+      letter-spacing: 0.08em;
+      font-size: 1.15rem;
       color: var(--color-ink);
-      min-height: 500px;
-      max-height: 70vh;
-      padding: 32px 24px;
-      /* 从右开始阅读 */
-      text-align: start;
-      /* 允许滚动查看长内容 */
+      /* 固定高度，防止越界 */
+      height: 65vh;
+      min-height: 400px;
+      max-height: 700px;
+      padding: 24px 48px 24px 24px;
+      /* 水平滚动查看更多内容 */
       overflow-x: auto;
       overflow-y: hidden;
+      /* 优化文字渲染 */
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+      /* 确保从右侧开始 */
+      text-align: start;
     }
 
     /* 竖排版滚动条样式优化 */
     .letter-detail-content::-webkit-scrollbar {
-      height: 6px;
+      height: 8px;
     }
 
     .letter-detail-content::-webkit-scrollbar-track {
-      background: rgba(140, 107, 93, 0.1);
-      border-radius: 3px;
+      background: rgba(140, 107, 93, 0.08);
+      border-radius: 4px;
     }
 
     .letter-detail-content::-webkit-scrollbar-thumb {
       background: var(--color-brand);
-      border-radius: 3px;
+      border-radius: 4px;
     }
 
     .letter-detail-content::-webkit-scrollbar-thumb:hover {
       background: var(--color-brand-deep);
+    }
+
+    /* 信件标题样式（最右侧）*/
+    .letter-detail-content .letter-title-text {
+      font-family: 'Ma Shan Zheng', cursive;
+      font-size: 1.8rem;
+      color: var(--color-brand-deep);
+      font-weight: 700;
+      letter-spacing: 0.25em;
+      line-height: 2;
+      margin: 0 60px 0 0;
+      display: inline-block;
+    }
+
+    /* 日期样式 */
+    .letter-detail-content .letter-date-text {
+      font-size: 1rem;
+      color: var(--color-muted);
+      letter-spacing: 0.15em;
+      margin: 0 48px 0 0;
+      display: inline-block;
+    }
+
+    /* 分隔线（竖线）*/
+    .letter-detail-content .letter-separator {
+      display: inline-block;
+      width: 0;
+      height: 100%;
+      border-right: 2px solid rgba(92, 64, 51, 0.3);
+      margin: 0 40px 0 0;
     }
 
     .letter-detail-content h1,
@@ -435,39 +451,49 @@
     .letter-detail-content h3 {
       font-family: 'Ma Shan Zheng', cursive;
       color: var(--color-brand-deep);
-      margin: 0 32px 0 0;
+      margin: 0 36px 0 0;
       font-weight: 700;
-      letter-spacing: 0.15em;
+      letter-spacing: 0.18em;
+      line-height: 2.2;
+      display: inline-block;
     }
 
     .letter-detail-content h1 {
-      font-size: 1.6rem;
-    }
-
-    .letter-detail-content h2 {
       font-size: 1.4rem;
     }
 
+    .letter-detail-content h2 {
+      font-size: 1.25rem;
+    }
+
     .letter-detail-content h3 {
-      font-size: 1.2rem;
+      font-size: 1.15rem;
     }
 
     .letter-detail-content p {
       margin: 0 24px 0 0;
       text-indent: 0;
+      line-height: 2.5;
+      display: inline-block;
     }
 
-    /* 段落首行缩进（竖排版中是顶部缩进）*/
-    .letter-detail-content p:not(:first-child) {
-      margin-top: 1em;
+    /* 连续段落间距 */
+    .letter-detail-content p + p {
+      margin-right: 28px;
     }
 
     .letter-detail-content blockquote {
       margin: 0 32px 0 0;
-      padding: 0 16px 0 0;
-      border-right: 2px solid var(--color-brand);
+      padding: 12px 16px 12px 0;
+      border-right: 3px solid var(--color-brand);
       color: var(--color-muted);
-      font-style: italic;
+      background: rgba(140, 107, 93, 0.06);
+      line-height: 2.3;
+      display: inline-block;
+    }
+
+    .letter-detail-content blockquote p {
+      margin: 0;
     }
 
     /* 强调文本 */
@@ -477,14 +503,14 @@
       font-weight: 600;
     }
 
-    /* 分隔线在竖排版中应该是竖线 */
+    /* 分隔线 */
     .letter-detail-content hr {
+      display: inline-block;
       border: none;
       border-right: 1px solid rgba(92, 64, 51, 0.3);
-      margin: 0 24px;
-      height: auto;
+      margin: 0 28px;
+      height: 80%;
       width: 0;
-      writing-mode: vertical-rl;
     }
 
     .letter-nav {
@@ -651,7 +677,7 @@
       }
 
       .letter-detail {
-        padding: 24px 20px;
+        padding: 24px 16px;
       }
 
       .letter-detail::before {
@@ -666,29 +692,59 @@
         direction: ltr;
         line-height: 1.9;
         letter-spacing: 0.05em;
+        height: auto;
         max-height: none;
         overflow-x: visible;
         overflow-y: auto;
-        padding: 16px;
+        padding: 16px 12px;
       }
 
-      /* 移动端段落样式调整 */
+      /* 移动端标题样式 */
+      .letter-detail-content .letter-title-text {
+        display: block;
+        font-size: 1.6rem;
+        text-align: center;
+        margin: 0 0 12px 0;
+        letter-spacing: 0.15em;
+      }
+
+      .letter-detail-content .letter-date-text {
+        display: block;
+        text-align: center;
+        margin: 0 0 20px 0;
+        font-size: 0.9rem;
+      }
+
+      .letter-detail-content .letter-separator {
+        display: block;
+        width: 60%;
+        height: 0;
+        border-right: none;
+        border-bottom: 1px solid rgba(92, 64, 51, 0.3);
+        margin: 0 auto 24px auto;
+      }
+
+      /* 移动端段落样式 */
       .letter-detail-content p {
+        display: block;
         margin: 0 0 1em 0;
         text-indent: 2em;
       }
 
-      .letter-detail-content p:not(:first-child) {
-        margin-top: 0;
+      .letter-detail-content p + p {
+        margin-right: 0;
       }
 
       .letter-detail-content h1,
       .letter-detail-content h2,
       .letter-detail-content h3 {
+        display: block;
         margin: 1.5em 0 0.8em 0;
+        text-align: left;
       }
 
       .letter-detail-content blockquote {
+        display: block;
         margin: 1em 0;
         padding: 0 0 0 16px;
         border-right: none;
@@ -696,12 +752,12 @@
       }
 
       .letter-detail-content hr {
+        display: block;
         border: none;
         border-top: 1px solid rgba(92, 64, 51, 0.3);
         margin: 1.5em 0;
         width: 100%;
         height: 0;
-        writing-mode: horizontal-tb;
       }
 
       .cards-grid {
@@ -783,12 +839,8 @@
               <!-- Letters will be loaded here -->
             </div>
             <div id="letter-detail-view" class="letter-detail hidden">
-              <div class="letter-detail-header">
-                <h2 id="letter-detail-title" class="letter-detail-title"></h2>
-                <p id="letter-detail-date" class="letter-detail-date"></p>
-              </div>
               <div id="letter-detail-content" class="letter-detail-content">
-                <!-- Letter content will be rendered here -->
+                <!-- Letter content will be rendered here (including title and date) -->
               </div>
               <div class="letter-nav">
                 <button id="letter-prev" class="letter-nav-btn">上一封</button>
@@ -972,15 +1024,28 @@
         // Fetch letter content
         try {
           const response = await fetch(letter.file);
-          const markdown = await response.text();
+          let markdown = await response.text();
+
+          // 移除 Markdown 中的第一个 H1 标题（避免重复）
+          markdown = markdown.replace(/^#\s+.*$/m, '');
+          // 移除开头的空行
+          markdown = markdown.trim();
+
           // Use marked function (compatible with v4.x)
-          const html = typeof marked !== 'undefined'
+          const contentHtml = typeof marked !== 'undefined'
             ? (marked.parse ? marked.parse(markdown) : marked(markdown))
             : markdown.replace(/\n/g, '<br>');
 
-          document.getElementById('letter-detail-title').textContent = letter.title;
-          document.getElementById('letter-detail-date').textContent = letter.date;
-          document.getElementById('letter-detail-content').innerHTML = html;
+          // 构建完整的信件内容（标题 + 日期 + 分隔线 + 正文）
+          // 按照传统书信格式：从右到左依次为 标题、日期、分隔线、正文
+          const fullHtml = `
+            <div class="letter-title-text">${letter.title}</div>
+            <div class="letter-date-text">${letter.date}</div>
+            <div class="letter-separator"></div>
+            ${contentHtml}
+          `;
+
+          document.getElementById('letter-detail-content').innerHTML = fullHtml;
 
           // Update navigation buttons
           document.getElementById('letter-prev').disabled = index === state.letters.length - 1;
