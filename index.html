@@ -9,7 +9,7 @@
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&family=Noto+Serif+TC:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&family=Noto+Serif+TC:wght@400;500;700&family=ZCOOL+XiaoWei&family=Long+Cang&display=swap" rel="stylesheet">
 
   <!-- Marked.js for Markdown parsing -->
   <script src="https://cdn.jsdelivr.net/npm/marked@4.3.0/marked.min.js"></script>
@@ -800,6 +800,245 @@
       }
     }
 
+    /* ==================== Card Modal ==================== */
+    .card-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 10000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.4s ease;
+    }
+
+    .card-modal:not(.hidden) {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .card-modal-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.7);
+      backdrop-filter: blur(8px);
+      animation: fadeIn 0.4s ease;
+    }
+
+    .card-modal-container {
+      position: relative;
+      width: 90%;
+      max-width: 600px;
+      max-height: 85vh;
+      background: var(--color-paper);
+      border-radius: 24px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+      overflow: hidden;
+      animation: modalSlideIn 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+      z-index: 1;
+    }
+
+    .card-modal-close {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      width: 40px;
+      height: 40px;
+      border: none;
+      background: rgba(0, 0, 0, 0.5);
+      color: white;
+      font-size: 24px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 10;
+      transition: all 0.3s ease;
+      font-family: Arial, sans-serif;
+    }
+
+    .card-modal-close:hover {
+      background: rgba(0, 0, 0, 0.8);
+      transform: rotate(90deg);
+    }
+
+    .card-modal-content {
+      position: relative;
+      min-height: 400px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .card-modal-animation {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      overflow: hidden;
+    }
+
+    .card-modal-body {
+      position: relative;
+      padding: 60px 50px;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    .card-modal-title {
+      font-family: 'Long Cang', 'Ma Shan Zheng', cursive;
+      font-size: 3rem;
+      margin-bottom: 16px;
+      background: linear-gradient(135deg, var(--color-brand-deep), var(--color-brand));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: titleFadeIn 0.8s ease 0.3s both;
+    }
+
+    .card-modal-festival {
+      font-family: 'ZCOOL XiaoWei', 'Noto Serif TC', serif;
+      font-size: 1.2rem;
+      color: var(--color-muted);
+      margin-bottom: 32px;
+      animation: titleFadeIn 0.8s ease 0.4s both;
+    }
+
+    .card-modal-divider {
+      width: 120px;
+      height: 3px;
+      background: linear-gradient(90deg, transparent, var(--color-brand), transparent);
+      margin: 24px 0;
+      animation: dividerExpand 0.6s ease 0.5s both;
+    }
+
+    .card-modal-message {
+      font-family: 'ZCOOL XiaoWei', 'Noto Serif TC', serif;
+      font-size: 1.4rem;
+      line-height: 2.2;
+      color: var(--color-ink);
+      white-space: pre-line;
+      animation: messageFadeIn 1s ease 0.6s both;
+    }
+
+    /* 节日主题样式 */
+    .card-modal.theme-bamboo .card-modal-container {
+      background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+    }
+
+    .card-modal.theme-bamboo .card-modal-title {
+      background: linear-gradient(135deg, #2e7d32, #4caf50);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .card-modal.theme-red .card-modal-container {
+      background: linear-gradient(135deg, #ffebee 0%, #ffcdd2 100%);
+    }
+
+    .card-modal.theme-red .card-modal-title {
+      background: linear-gradient(135deg, #c62828, #e53935);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .card-modal.theme-moon .card-modal-container {
+      background: linear-gradient(135deg, #fff8e1 0%, #ffecb3 100%);
+    }
+
+    .card-modal.theme-moon .card-modal-title {
+      background: linear-gradient(135deg, #d4a574, #f57c00);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .card-modal.theme-christmas .card-modal-container {
+      background: linear-gradient(135deg, #1b5e20 0%, #2e7d32 100%);
+    }
+
+    .card-modal.theme-christmas .card-modal-title,
+    .card-modal.theme-christmas .card-modal-festival,
+    .card-modal.theme-christmas .card-modal-message {
+      color: white;
+      background: none;
+      -webkit-text-fill-color: white;
+      text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+    }
+
+    .card-modal.theme-newyear .card-modal-container {
+      background: linear-gradient(135deg, #1a237e 0%, #283593 100%);
+    }
+
+    .card-modal.theme-newyear .card-modal-title {
+      color: #ffd700;
+      background: none;
+      -webkit-text-fill-color: #ffd700;
+      text-shadow: 0 0 20px rgba(255, 215, 0, 0.6);
+    }
+
+    .card-modal.theme-newyear .card-modal-festival,
+    .card-modal.theme-newyear .card-modal-message {
+      color: white;
+    }
+
+    /* Modal动画 */
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+
+    @keyframes modalSlideIn {
+      from {
+        opacity: 0;
+        transform: scale(0.8) translateY(40px);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+      }
+    }
+
+    @keyframes titleFadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes dividerExpand {
+      from {
+        width: 0;
+      }
+      to {
+        width: 120px;
+      }
+    }
+
+    @keyframes messageFadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
     /* ==================== Utilities ==================== */
     .hidden {
       display: none !important;
@@ -1018,6 +1257,25 @@
           <div id="cards-grid" class="cards-grid">
             <!-- Cards will be loaded here -->
           </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== Card Modal ==================== -->
+  <div id="card-modal" class="card-modal hidden">
+    <div class="card-modal-overlay"></div>
+    <div class="card-modal-container">
+      <button class="card-modal-close" aria-label="关闭">✕</button>
+      <div class="card-modal-content">
+        <!-- SVG动画容器 -->
+        <div class="card-modal-animation"></div>
+        <!-- 贺卡内容 -->
+        <div class="card-modal-body">
+          <h2 class="card-modal-title"></h2>
+          <p class="card-modal-festival"></p>
+          <div class="card-modal-divider"></div>
+          <div class="card-modal-message"></div>
         </div>
       </div>
     </div>
@@ -1262,7 +1520,7 @@
           return;
         }
 
-        state.cards.forEach(card => {
+        state.cards.forEach((card, index) => {
           const wrapper = document.createElement('div');
           wrapper.className = 'card-wrapper';
           wrapper.innerHTML = `
@@ -1277,12 +1535,210 @@
             </div>
           `;
 
+          // 点击打开模态框
           wrapper.addEventListener('click', () => {
-            wrapper.classList.toggle('flipped');
+            cardModalModule.open(card);
           });
 
           grid.appendChild(wrapper);
         });
+      }
+    };
+
+    // ==================== Card Modal Module ====================
+    const cardModalModule = {
+      modal: null,
+      overlay: null,
+      closeBtn: null,
+      animationContainer: null,
+
+      init() {
+        this.modal = document.getElementById('card-modal');
+        this.overlay = this.modal.querySelector('.card-modal-overlay');
+        this.closeBtn = this.modal.querySelector('.card-modal-close');
+        this.animationContainer = this.modal.querySelector('.card-modal-animation');
+
+        // 关闭按钮事件
+        this.closeBtn.addEventListener('click', () => this.close());
+
+        // 点击遮罩层关闭
+        this.overlay.addEventListener('click', () => this.close());
+
+        // ESC键关闭
+        document.addEventListener('keydown', (e) => {
+          if (e.key === 'Escape' && !this.modal.classList.contains('hidden')) {
+            this.close();
+          }
+        });
+      },
+
+      open(card) {
+        // 设置内容
+        this.modal.querySelector('.card-modal-title').textContent = card.title;
+        this.modal.querySelector('.card-modal-festival').textContent = card.festival;
+        this.modal.querySelector('.card-modal-message').textContent = card.content;
+
+        // 设置主题
+        this.modal.className = 'card-modal';
+        this.modal.classList.add(`theme-${card.style}`);
+
+        // 添加SVG动画
+        this.renderAnimation(card.style);
+
+        // 显示模态框
+        this.modal.classList.remove('hidden');
+        document.body.style.overflow = 'hidden';
+      },
+
+      close() {
+        this.modal.classList.add('hidden');
+        document.body.style.overflow = '';
+        // 清空动画容器
+        setTimeout(() => {
+          this.animationContainer.innerHTML = '';
+        }, 400);
+      },
+
+      renderAnimation(style) {
+        this.animationContainer.innerHTML = '';
+
+        switch (style) {
+          case 'bamboo':
+            this.animationContainer.innerHTML = this.getBambooSVG();
+            break;
+          case 'red':
+            this.animationContainer.innerHTML = this.getRedEnvelopeSVG();
+            break;
+          case 'moon':
+            this.animationContainer.innerHTML = this.getMoonSVG();
+            break;
+          case 'christmas':
+            this.animationContainer.innerHTML = this.getChristmasSVG();
+            break;
+          case 'newyear':
+            this.animationContainer.innerHTML = this.getNewYearSVG();
+            break;
+        }
+      },
+
+      // SVG动画模板
+      getBambooSVG() {
+        return `
+          <svg viewBox="0 0 600 400" style="width: 100%; height: 100%;">
+            <defs>
+              <linearGradient id="bambooGrad" x1="0%" y1="0%" x2="0%" y1="100%">
+                <stop offset="0%" style="stop-color:#4caf50;stop-opacity:0.8" />
+                <stop offset="100%" style="stop-color:#2e7d32;stop-opacity:0.6" />
+              </linearGradient>
+            </defs>
+            <g class="bamboo-group">
+              <rect x="50" y="50" width="15" height="80" fill="url(#bambooGrad)" rx="7">
+                <animate attributeName="height" values="80;90;80" dur="3s" repeatCount="indefinite"/>
+              </rect>
+              <rect x="50" y="140" width="15" height="80" fill="url(#bambooGrad)" rx="7">
+                <animate attributeName="height" values="80;85;80" dur="3.5s" repeatCount="indefinite"/>
+              </rect>
+              <rect x="530" y="100" width="15" height="90" fill="url(#bambooGrad)" rx="7">
+                <animate attributeName="height" values="90;100;90" dur="3.2s" repeatCount="indefinite"/>
+              </rect>
+            </g>
+          </svg>
+        `;
+      },
+
+      getRedEnvelopeSVG() {
+        return `
+          <svg viewBox="0 0 600 400" style="width: 100%; height: 100%;">
+            <g class="envelope-group" opacity="0.3">
+              <rect x="100" y="50" width="60" height="40" fill="#c62828" rx="3">
+                <animateTransform attributeName="transform" type="rotate"
+                  from="0 130 70" to="360 130 70" dur="20s" repeatCount="indefinite"/>
+              </rect>
+              <rect x="440" y="300" width="50" height="35" fill="#e53935" rx="3">
+                <animateTransform attributeName="transform" type="rotate"
+                  from="0 465 317.5" to="-360 465 317.5" dur="25s" repeatCount="indefinite"/>
+              </rect>
+            </g>
+          </svg>
+        `;
+      },
+
+      getMoonSVG() {
+        return `
+          <svg viewBox="0 0 600 400" style="width: 100%; height: 100%;">
+            <defs>
+              <radialGradient id="moonGrad">
+                <stop offset="0%" style="stop-color:#fff8e1;stop-opacity:1" />
+                <stop offset="100%" style="stop-color:#ffecb3;stop-opacity:0.3" />
+              </radialGradient>
+            </defs>
+            <circle cx="300" cy="200" r="80" fill="url(#moonGrad)" opacity="0.4">
+              <animate attributeName="r" values="80;90;80" dur="4s" repeatCount="indefinite"/>
+              <animate attributeName="opacity" values="0.4;0.6;0.4" dur="4s" repeatCount="indefinite"/>
+            </circle>
+          </svg>
+        `;
+      },
+
+      getChristmasSVG() {
+        const snowflakes = [];
+        for (let i = 0; i < 30; i++) {
+          const x = Math.random() * 600;
+          const y = Math.random() * 400;
+          const size = Math.random() * 3 + 2;
+          const duration = Math.random() * 3 + 2;
+          const delay = Math.random() * 2;
+
+          snowflakes.push(`
+            <circle cx="${x}" cy="${y}" r="${size}" fill="white" opacity="0.8">
+              <animate attributeName="cy" from="-20" to="420"
+                dur="${duration}s" begin="${delay}s" repeatCount="indefinite"/>
+              <animate attributeName="opacity" values="0;0.8;0"
+                dur="${duration}s" begin="${delay}s" repeatCount="indefinite"/>
+            </circle>
+          `);
+        }
+
+        return `
+          <svg viewBox="0 0 600 400" style="width: 100%; height: 100%;">
+            ${snowflakes.join('')}
+          </svg>
+        `;
+      },
+
+      getNewYearSVG() {
+        const fireworks = [];
+        const colors = ['#ffd700', '#ff6b6b', '#4ecdc4', '#ff66d9'];
+
+        for (let i = 0; i < 6; i++) {
+          const cx = Math.random() * 500 + 50;
+          const cy = Math.random() * 300 + 50;
+          const color = colors[Math.floor(Math.random() * colors.length)];
+          const delay = Math.random() * 2;
+
+          fireworks.push(`
+            <g>
+              <circle cx="${cx}" cy="${cy}" r="0" fill="${color}" opacity="0.8">
+                <animate attributeName="r" values="0;40;0" dur="2s" begin="${delay}s" repeatCount="indefinite"/>
+                <animate attributeName="opacity" values="0.8;0;0.8" dur="2s" begin="${delay}s" repeatCount="indefinite"/>
+              </circle>
+              ${[0, 72, 144, 216, 288].map(angle => `
+                <circle cx="${cx}" cy="${cy}" r="2" fill="${color}">
+                  <animateTransform attributeName="transform" type="translate"
+                    values="0,0; ${Math.cos(angle * Math.PI / 180) * 50},${Math.sin(angle * Math.PI / 180) * 50}"
+                    dur="2s" begin="${delay}s" repeatCount="indefinite"/>
+                  <animate attributeName="opacity" values="1;0" dur="2s" begin="${delay}s" repeatCount="indefinite"/>
+                </circle>
+              `).join('')}
+            </g>
+          `);
+        }
+
+        return `
+          <svg viewBox="0 0 600 400" style="width: 100%; height: 100%;">
+            ${fireworks.join('')}
+          </svg>
+        `;
       }
     };
 
@@ -1329,6 +1785,7 @@
         lettersModule.init();
         lettersModule.setupNavigation();
         cardsModule.init();
+        cardModalModule.init();
         tabNavigation.init();
       }
     };
