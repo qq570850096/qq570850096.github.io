@@ -1,165 +1,979 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh-TW">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>致楚林 · 教师节清晏小站</title>
-  <meta name="description" content="一份初秋的私语：致楚林的教师节祝福。王安石之光，燕云十六声·江晏的浪漫底色。" />
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&display=swap');
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>清晏小站 · 桃李春風</title>
+  <meta name="description" content="清晏小站 - 一處古風雅致的互動站點，寄語心語，錦書長信，節日賀卡。">
 
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&family=Noto+Serif+TC:wght@400;500;700&display=swap" rel="stylesheet">
+
+  <!-- Marked.js for Markdown parsing -->
+  <script src="https://cdn.jsdelivr.net/npm/marked@11.1.1/marked.min.js"></script>
+
+  <style>
+    /* ==================== CSS Variables ==================== */
     :root {
-      --ink: #3a2d22;
-      --muted: #6e6258;
-      --paper: rgba(255,255,255,.86);
-      --ring: rgba(140,107,93,.22);
-      --brand: #8c6b5d;
-      --brand-deep: #5c4033;
+      --color-ink: #3a2d22;
+      --color-ink-light: #5c4033;
+      --color-muted: #6e6258;
+      --color-paper: #fffef9;
+      --color-paper-alpha: rgba(255, 254, 249, 0.92);
+      --color-brand: #8c6b5d;
+      --color-brand-deep: #5c4033;
+      --color-red: #c8372d;
+      --color-bamboo: #5a8776;
+      --color-moon: #f5e6d3;
+      --shadow-soft: 0 8px 24px rgba(0, 0, 0, 0.08);
+      --shadow-card: 0 4px 12px rgba(0, 0, 0, 0.12);
+      --transition-fast: 0.3s ease;
+      --transition-normal: 0.5s ease;
     }
 
-    /* 页面与背景：允许滚动且自适应 */
-    html { height: auto; }
-    body {
-      font-family: 'Noto Serif SC', serif;
+    /* ==================== Reset & Base ==================== */
+    * {
       margin: 0;
       padding: 0;
-      color: var(--ink);
-      background-color: #f4f1ea;
-      background-image: url('https://user-images.githubusercontent.com/7268808/215774530-1c9f3f3e-4b44-469a-9e20-73f8430e7a00.png');
-      background-size: cover; background-position: center; background-attachment: fixed;
-      min-height: 100vh;
-      -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility;
-      /* 桂花鼠标（自定义游标，热点 12 12） */
-      cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'><g fill='%23f2c46d' stroke='%23b98a34' stroke-width='1'><circle cx='12' cy='5' r='4'/><circle cx='19' cy='12' r='4'/><circle cx='12' cy='19' r='4'/><circle cx='5' cy='12' r='4'/></g><circle cx='12' cy='12' r='2' fill='%23b98a34'/></svg>") 12 12, auto;
+      box-sizing: border-box;
+    }
+
+    html {
       scroll-behavior: smooth;
     }
 
-    .container {
-      max-width: 880px; width: 92%; margin: 40px auto; padding: 32px 22px;
-      background: var(--paper);
-      border-radius: 12px; box-shadow: 0 6px 20px rgba(0,0,0,.08);
-      border: 1px solid rgba(255,255,255,.28); backdrop-filter: blur(5px);
-      transition: transform .6s ease, opacity .6s ease;
+    body {
+      font-family: 'Noto Serif TC', serif;
+      color: var(--color-ink);
+      background: linear-gradient(135deg, #f4f1ea 0%, #e8dfd0 100%);
+      background-attachment: fixed;
+      min-height: 100vh;
+      line-height: 1.8;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
     }
 
-    h1, h2 { color: var(--brand-deep); }
-    h1 { margin: 0 0 18px; font-size: clamp(1.6rem, 4.2vw, 2.2rem); }
-    h2 { margin: 10px 0 12px; font-size: clamp(1.2rem, 3.6vw, 1.6rem); text-align: left; }
-    p { line-height: 1.9; font-size: clamp(1rem, 2.6vw, 1.1rem); text-align: justify; margin: 0 0 1.2em; }
-
-    .input-group { margin: 20px 0; display: flex; gap: 10px; justify-content: center; }
-    #password-input {
-      padding: 10px 14px; border: 1px solid #c8bba8; border-radius: 8px; width: 200px;
-      font-size: 1rem; outline: none; font-family: inherit;
-    }
-    #password-input:focus { box-shadow: 0 0 0 6px var(--ring); border-color: #bda78f; }
-    #submit-button {
-      padding: 10px 18px; border-radius: 8px; border: none; cursor: pointer;
-      color: #fff; background: linear-gradient(180deg, var(--brand), var(--brand-deep));
-      font-size: 1rem; font-weight: 700; font-family: inherit; box-shadow: 0 6px 14px rgba(92,64,51,.22);
-      transition: transform .1s ease, filter .2s ease;
-    }
-    #submit-button:active { transform: translateY(1px); }
-    #error-message { color: #a0522d; margin-top: 10px; visibility: hidden; }
-
-    .separator {
-      border: 0; height: 1px; margin: 10px 0 30px 0;
-      background-image: linear-gradient(to right, rgba(255,255,255,0), rgba(92,64,51,.6), rgba(255,255,255,0));
+    /* ==================== Password Gate ==================== */
+    #password-gate {
+      position: fixed;
+      inset: 0;
+      background: linear-gradient(135deg, #f4f1ea 0%, #e8dfd0 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      transition: opacity 0.8s ease;
     }
 
-    /* 进入时的渐显 */
-    #password-gate, #main-content { transition: opacity .8s ease-in-out; }
-    #main-content { opacity: 0; }
-    .hidden { display: none; }
-    .signature { text-align: right; margin-top: 50px; font-size: 1.05em; color: var(--muted); }
+    #password-gate.hidden {
+      opacity: 0;
+      pointer-events: none;
+    }
 
-    /* 小屏优化 */
-    @media (max-width: 600px) {
-      .container { padding: 22px 16px; margin: 22px auto; }
+    .gate-card {
+      background: var(--color-paper-alpha);
+      padding: 48px 40px;
+      border-radius: 16px;
+      box-shadow: var(--shadow-soft);
+      text-align: center;
+      max-width: 420px;
+      width: 90%;
+      backdrop-filter: blur(10px);
+    }
+
+    .gate-title {
+      font-family: 'Ma Shan Zheng', cursive;
+      font-size: 2.4rem;
+      color: var(--color-brand-deep);
+      margin-bottom: 16px;
+    }
+
+    .gate-subtitle {
+      color: var(--color-muted);
+      font-size: 1rem;
+      margin-bottom: 32px;
+    }
+
+    .gate-input-group {
+      display: flex;
+      gap: 12px;
+      margin-top: 24px;
+    }
+
+    .gate-input {
+      flex: 1;
+      padding: 12px 16px;
+      border: 2px solid #d4c4b0;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-family: inherit;
+      outline: none;
+      transition: border-color var(--transition-fast);
+    }
+
+    .gate-input:focus {
+      border-color: var(--color-brand);
+      box-shadow: 0 0 0 4px rgba(140, 107, 93, 0.1);
+    }
+
+    .gate-button {
+      padding: 12px 24px;
+      background: linear-gradient(135deg, var(--color-brand), var(--color-brand-deep));
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+      font-family: inherit;
+    }
+
+    .gate-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(92, 64, 51, 0.3);
+    }
+
+    .gate-button:active {
+      transform: translateY(0);
+    }
+
+    .gate-error {
+      color: var(--color-red);
+      font-size: 0.9rem;
+      margin-top: 12px;
+      opacity: 0;
+      transition: opacity var(--transition-fast);
+    }
+
+    .gate-error.show {
+      opacity: 1;
+    }
+
+    /* ==================== Main Layout ==================== */
+    #main-app {
+      opacity: 0;
+      transition: opacity 0.8s ease;
+    }
+
+    #main-app.show {
+      opacity: 1;
+    }
+
+    .app-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    /* ==================== Navigation Bar ==================== */
+    .nav-bar {
+      background: var(--color-paper-alpha);
+      backdrop-filter: blur(10px);
+      border-radius: 16px;
+      padding: 16px 24px;
+      margin-bottom: 24px;
+      box-shadow: var(--shadow-soft);
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .nav-item {
+      padding: 12px 24px;
+      background: transparent;
+      border: 2px solid transparent;
+      border-radius: 12px;
+      font-size: 1.1rem;
+      font-weight: 500;
+      color: var(--color-muted);
+      cursor: pointer;
+      transition: all var(--transition-fast);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-family: 'Ma Shan Zheng', cursive;
+    }
+
+    .nav-item:hover {
+      color: var(--color-brand-deep);
+      background: rgba(140, 107, 93, 0.1);
+    }
+
+    .nav-item.active {
+      color: var(--color-brand-deep);
+      border-color: var(--color-brand);
+      background: rgba(140, 107, 93, 0.15);
+    }
+
+    .nav-icon {
+      width: 20px;
+      height: 20px;
+    }
+
+    /* ==================== Content Area ==================== */
+    .content-area {
+      position: relative;
+      min-height: 500px;
+    }
+
+    .content-panel {
+      position: absolute;
+      width: 100%;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity var(--transition-normal);
+    }
+
+    .content-panel.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    /* ==================== Module: 轩窗 (Messages) ==================== */
+    .message-card {
+      background: var(--color-paper-alpha);
+      backdrop-filter: blur(10px);
+      border-radius: 16px;
+      padding: 48px 40px;
+      box-shadow: var(--shadow-soft);
+      text-align: center;
+      max-width: 700px;
+      margin: 0 auto;
+      position: relative;
+    }
+
+    .message-content {
+      font-size: 1.8rem;
+      line-height: 2.2;
+      color: var(--color-ink);
+      margin-bottom: 32px;
+      font-weight: 500;
+      min-height: 120px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .message-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: var(--color-muted);
+      font-size: 1rem;
+      margin-top: 24px;
+      padding-top: 24px;
+      border-top: 1px solid rgba(92, 64, 51, 0.2);
+    }
+
+    .message-refresh {
+      padding: 10px 20px;
+      background: var(--color-brand);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 0.95rem;
+      font-family: inherit;
+      transition: all var(--transition-fast);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin: 24px auto 0;
+    }
+
+    .message-refresh:hover {
+      background: var(--color-brand-deep);
+      transform: translateY(-2px);
+    }
+
+    /* ==================== Module: 锦书 (Letters) ==================== */
+    .letters-container {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .letters-list {
+      display: grid;
+      gap: 16px;
+    }
+
+    .letter-item {
+      background: var(--color-paper-alpha);
+      backdrop-filter: blur(10px);
+      border-radius: 12px;
+      padding: 24px;
+      box-shadow: var(--shadow-card);
+      cursor: pointer;
+      transition: all var(--transition-fast);
+      border: 2px solid transparent;
+    }
+
+    .letter-item:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+      border-color: var(--color-brand);
+    }
+
+    .letter-title {
+      font-size: 1.4rem;
+      color: var(--color-brand-deep);
+      margin-bottom: 8px;
+      font-family: 'Ma Shan Zheng', cursive;
+    }
+
+    .letter-date {
+      color: var(--color-muted);
+      font-size: 0.9rem;
+      margin-bottom: 12px;
+    }
+
+    .letter-preview {
+      color: var(--color-ink-light);
+      font-size: 1rem;
+      line-height: 1.6;
+    }
+
+    /* Letter Detail View */
+    .letter-detail {
+      background: var(--color-paper-alpha);
+      backdrop-filter: blur(10px);
+      border-radius: 16px;
+      padding: 48px;
+      box-shadow: var(--shadow-soft);
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .letter-detail-header {
+      text-align: center;
+      margin-bottom: 32px;
+      padding-bottom: 24px;
+      border-bottom: 2px solid rgba(92, 64, 51, 0.2);
+    }
+
+    .letter-detail-title {
+      font-size: 2rem;
+      color: var(--color-brand-deep);
+      margin-bottom: 12px;
+      font-family: 'Ma Shan Zheng', cursive;
+    }
+
+    .letter-detail-date {
+      color: var(--color-muted);
+      font-size: 1rem;
+    }
+
+    .letter-detail-content {
+      writing-mode: vertical-rl;
+      text-orientation: upright;
+      line-height: 2.4;
+      font-size: 1.2rem;
+      color: var(--color-ink);
+      min-height: 500px;
+      padding: 20px;
+      direction: rtl;
+    }
+
+    .letter-detail-content h1,
+    .letter-detail-content h2,
+    .letter-detail-content h3 {
+      font-family: 'Ma Shan Zheng', cursive;
+      color: var(--color-brand-deep);
+      margin: 0 24px;
+    }
+
+    .letter-detail-content p {
+      margin: 0 16px;
+    }
+
+    .letter-detail-content blockquote {
+      margin: 0 24px;
+      padding: 0 16px;
+      border-right: 3px solid var(--color-brand);
+      color: var(--color-muted);
+    }
+
+    .letter-nav {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 32px;
+      padding-top: 24px;
+      border-top: 1px solid rgba(92, 64, 51, 0.2);
+    }
+
+    .letter-nav-btn {
+      padding: 10px 20px;
+      background: var(--color-brand);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-family: inherit;
+      transition: all var(--transition-fast);
+    }
+
+    .letter-nav-btn:hover {
+      background: var(--color-brand-deep);
+    }
+
+    .letter-nav-btn:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+    }
+
+    /* ==================== Module: 百宝阁 (Cards) ==================== */
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 24px;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .card-wrapper {
+      perspective: 1000px;
+      height: 360px;
+    }
+
+    .card-inner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      transition: transform 0.8s;
+      transform-style: preserve-3d;
+      cursor: pointer;
+    }
+
+    .card-wrapper.flipped .card-inner {
+      transform: rotateY(180deg);
+    }
+
+    .card-face {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      backface-visibility: hidden;
+      border-radius: 16px;
+      box-shadow: var(--shadow-card);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 32px;
+    }
+
+    .card-front {
+      background: linear-gradient(135deg, var(--color-paper) 0%, #f8f5ed 100%);
+      border: 3px solid;
+    }
+
+    .card-front.style-bamboo {
+      border-color: var(--color-bamboo);
+      background-image:
+        linear-gradient(135deg, var(--color-paper) 0%, #e8f5e9 100%);
+    }
+
+    .card-front.style-red {
+      border-color: var(--color-red);
+      background-image:
+        linear-gradient(135deg, var(--color-paper) 0%, #ffebee 100%);
+    }
+
+    .card-front.style-moon {
+      border-color: #d4a574;
+      background-image:
+        linear-gradient(135deg, var(--color-moon) 0%, #fff8e1 100%);
+    }
+
+    .card-back {
+      background: var(--color-paper);
+      transform: rotateY(180deg);
+      padding: 40px 32px;
+    }
+
+    .card-front-title {
+      font-family: 'Ma Shan Zheng', cursive;
+      font-size: 2rem;
+      margin-bottom: 16px;
+      text-align: center;
+    }
+
+    .card-front.style-bamboo .card-front-title {
+      color: var(--color-bamboo);
+    }
+
+    .card-front.style-red .card-front-title {
+      color: var(--color-red);
+    }
+
+    .card-front.style-moon .card-front-title {
+      color: #d4a574;
+    }
+
+    .card-festival {
+      font-size: 1rem;
+      color: var(--color-muted);
+    }
+
+    .card-back-content {
+      font-size: 1.2rem;
+      line-height: 2;
+      color: var(--color-ink);
+      text-align: center;
+      white-space: pre-line;
+    }
+
+    /* ==================== Utilities ==================== */
+    .hidden {
+      display: none !important;
+    }
+
+    /* ==================== Responsive ==================== */
+    @media (max-width: 768px) {
+      .gate-card {
+        padding: 32px 24px;
+      }
+
+      .gate-title {
+        font-size: 2rem;
+      }
+
+      .nav-bar {
+        padding: 12px 16px;
+      }
+
+      .nav-item {
+        padding: 10px 16px;
+        font-size: 1rem;
+      }
+
+      .message-card {
+        padding: 32px 24px;
+      }
+
+      .message-content {
+        font-size: 1.4rem;
+        min-height: 100px;
+      }
+
+      .letter-detail {
+        padding: 32px 24px;
+      }
+
+      .letter-detail-content {
+        font-size: 1.1rem;
+        writing-mode: horizontal-tb;
+        text-orientation: mixed;
+        direction: ltr;
+      }
+
+      .cards-grid {
+        grid-template-columns: 1fr;
+      }
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <!-- 密码输入界面 -->
-    <div id="password-gate">
-      <h1>请启封</h1>
-      <p>此间私语，待君亲启</p>
-      <p>请输入密语：</p>
-      <div class="input-group">
-        <input type="password" id="password-input" placeholder="心有灵犀"
-               onkeydown="if(event.key==='Enter') document.getElementById('submit-button').click()" />
-        <button id="submit-button">开启</button>
+  <!-- ==================== Password Gate ==================== -->
+  <div id="password-gate">
+    <div class="gate-card">
+      <h1 class="gate-title">請啟封</h1>
+      <p class="gate-subtitle">此間私語，待君親啟</p>
+      <div class="gate-input-group">
+        <input type="password" id="password-input" class="gate-input"
+               placeholder="心有靈犀" autocomplete="off">
+        <button id="password-submit" class="gate-button">開啟</button>
       </div>
-      <p id="error-message">密语有误，请再思之</p>
+      <p id="password-error" class="gate-error">密語有誤，請再思之</p>
     </div>
+  </div>
 
-    <!-- 主要祝福内容 (默认隐藏) -->
-    <div id="main-content" class="hidden">
-      <h2>楚林</h2>
-      <h1>桃李春风，教安秋祺</h1>
+  <!-- ==================== Main Application ==================== -->
+  <div id="main-app">
+    <div class="app-container">
+      <!-- Navigation Bar -->
+      <nav class="nav-bar">
+        <button class="nav-item active" data-tab="messages">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+          </svg>
+          轩窗
+        </button>
+        <button class="nav-item" data-tab="letters">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+            <polyline points="22,6 12,13 2,6"></polyline>
+          </svg>
+          锦书
+        </button>
+        <button class="nav-item" data-tab="cards">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
+            <path d="M16 3h2v4M8 3H6v4"></path>
+          </svg>
+          百寶閣
+        </button>
+      </nav>
 
-      <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86"
-              src="https://i.y.qq.com/n2/m/outchain/player/index.html?songid=294095266&songtype=0"></iframe>
+      <!-- Content Area -->
+      <div class="content-area">
+        <!-- 轩窗 Panel -->
+        <div id="panel-messages" class="content-panel active">
+          <div class="message-card">
+            <div id="message-content" class="message-content">
+              載入中...
+            </div>
+            <div class="message-meta">
+              <div>
+                <div id="message-author"></div>
+              </div>
+              <div id="message-date"></div>
+            </div>
+            <button id="message-refresh" class="message-refresh">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="23 4 23 10 17 10"></polyline>
+                <path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"></path>
+              </svg>
+              換一句
+            </button>
+          </div>
+        </div>
 
-      <hr class="separator" />
+        <!-- 锦书 Panel -->
+        <div id="panel-letters" class="content-panel">
+          <div class="letters-container">
+            <div id="letters-list-view" class="letters-list">
+              <!-- Letters will be loaded here -->
+            </div>
+            <div id="letter-detail-view" class="letter-detail hidden">
+              <div class="letter-detail-header">
+                <h2 id="letter-detail-title" class="letter-detail-title"></h2>
+                <p id="letter-detail-date" class="letter-detail-date"></p>
+              </div>
+              <div id="letter-detail-content" class="letter-detail-content">
+                <!-- Letter content will be rendered here -->
+              </div>
+              <div class="letter-nav">
+                <button id="letter-prev" class="letter-nav-btn">上一封</button>
+                <button id="letter-back" class="letter-nav-btn">返回列表</button>
+                <button id="letter-next" class="letter-nav-btn">下一封</button>
+              </div>
+            </div>
+          </div>
+        </div>
 
-      <p>秋意渐浓，夜里有了些凉意。这种时候，我总会想起些许桂花的香气。</p>
-      <p>之前你说你已经回归现实生活了，真不错。一想到你在实习中学习、尝试的样子，我脑海里总会跳出一些固执又有趣的家伙。</p>
-      <p>我知道你尤其欣赏半山（王安石）。你总能从他的变法中，看到那种即便面对举世皆敌，也要为苍生开太平的魄力。那种逆风而行，在旧秩序中构筑新篇章的决心与远见，那样的气魄在你眼中，才是真正的浪漫与理想。</p>
-      <p>还有燕云十六声的江晏——你喜欢的那个同人角色，那个用笔墨守护心中“道”与“理”的文士。我总觉得，你身上也有那种“拗”劲儿，一种为了守护某些微小而重要的东西，不惜与周遭的平庸为敌的执着。我觉得，这很酷。正所谓人缺少什么就会期盼什么，我没有多少认真与热爱，所以做不到孤勇劈风雪，也没有多少沉潜与清明，更做不到月下轻声说，真是应了那句话“看似寻常最奇崛，成如容易却艰辛”。</p>
-      <p>很多人的人生，是“春风得意马蹄疾”的张扬，或是“随风直到夜郎西”的漂泊。但你呢，无论是在校园深耕，还是初入社会实习，你的世界，更像是在酝酿着一份对变革的期待。我说不好。</p>
-      <p>所以，在这个初秋，没什么宏大的祝福。只愿你的那份“拗”劲儿与热爱，能一直被温柔以待。若有一日风起云低，愿你仍记得今天：教师节不止属于站在讲台的人，也属于我们每一个在生活里教会自己成长的人。不急不徐，如竹如兰，万般困难方可解。总之，教师节快乐，至少在想象中是快乐的。</p>
-      <p>江水清而不争，风月晏而不燥；愿你从此去处，皆有光落在肩。</p>
-
-      <div class="signature">
-        <p>你的朋友<br/>刘永伦</p>
-        <p>写于 2025.9.10</p>
+        <!-- 百宝阁 Panel -->
+        <div id="panel-cards" class="content-panel">
+          <div id="cards-grid" class="cards-grid">
+            <!-- Cards will be loaded here -->
+          </div>
+        </div>
       </div>
     </div>
   </div>
 
+  <!-- ==================== JavaScript ==================== -->
   <script>
-    (function() {
-      const input = document.getElementById('password-input');
-      const btn = document.getElementById('submit-button');
-      const gate = document.getElementById('password-gate');
-      const main = document.getElementById('main-content');
-      const err = document.getElementById('error-message');
+    // ==================== State Management ====================
+    const state = {
+      messages: [],
+      letters: [],
+      cards: [],
+      currentMessage: null,
+      currentLetterIndex: -1,
+      activeTab: 'messages'
+    };
 
-      // 尝试从会话恢复
-      try { if (sessionStorage.getItem('passed') === '1') { showMain(); } } catch (e) {}
+    // ==================== Password Gate ====================
+    const passwordGate = {
+      init() {
+        const input = document.getElementById('password-input');
+        const submit = document.getElementById('password-submit');
+        const error = document.getElementById('password-error');
+        const gate = document.getElementById('password-gate');
+        const mainApp = document.getElementById('main-app');
 
-      function showMain() {
-        err.style.visibility = 'hidden';
-        gate.style.opacity = '0';
-        setTimeout(() => {
-          gate.classList.add('hidden');
-          main.classList.remove('hidden');
-          requestAnimationFrame(() => { main.style.opacity = '1'; });
-        }, 800);
+        // Check session storage
+        if (sessionStorage.getItem('authenticated') === 'true') {
+          this.unlock();
+          return;
+        }
+
+        const checkPassword = () => {
+          const value = input.value.trim();
+          if (value === '0214') {
+            sessionStorage.setItem('authenticated', 'true');
+            this.unlock();
+          } else {
+            error.classList.add('show');
+            input.value = '';
+            input.animate([
+              { transform: 'translateX(-8px)' },
+              { transform: 'translateX(8px)' },
+              { transform: 'translateX(-8px)' },
+              { transform: 'translateX(8px)' },
+              { transform: 'translateX(0)' }
+            ], { duration: 400, easing: 'ease-in-out' });
+            setTimeout(() => error.classList.remove('show'), 3000);
+          }
+        };
+
+        submit.addEventListener('click', checkPassword);
+        input.addEventListener('keypress', (e) => {
+          if (e.key === 'Enter') checkPassword();
+        });
+      },
+
+      unlock() {
+        const gate = document.getElementById('password-gate');
+        const mainApp = document.getElementById('main-app');
+
+        gate.classList.add('hidden');
+        mainApp.classList.add('show');
+
+        // Initialize app after unlocking
+        app.init();
       }
+    };
 
-      function check() {
-        if ((input.value || '').trim() === '0214') {
-          try { sessionStorage.setItem('passed', '1'); } catch (e) {}
-          showMain();
-        } else {
-          err.style.visibility = 'visible';
-          input.animate([
-            { transform: 'translateX(-10px)' },
-            { transform: 'translateX(10px)' },
-            { transform: 'translateX(-6px)' },
-            { transform: 'translateX(6px)' },
-            { transform: 'translateX(0)' }
-          ], { duration: 420, easing: 'ease-in-out' });
-          input.value = '';
+    // ==================== Data Loading ====================
+    const dataLoader = {
+      async loadMessages() {
+        try {
+          const response = await fetch('data/messages.json');
+          state.messages = await response.json();
+        } catch (error) {
+          console.error('Failed to load messages:', error);
+          state.messages = [];
+        }
+      },
+
+      async loadLetters() {
+        try {
+          const response = await fetch('data/letters_index.json');
+          state.letters = await response.json();
+          state.letters.sort((a, b) => new Date(b.date) - new Date(a.date));
+        } catch (error) {
+          console.error('Failed to load letters:', error);
+          state.letters = [];
+        }
+      },
+
+      async loadCards() {
+        try {
+          const response = await fetch('data/cards.json');
+          state.cards = await response.json();
+        } catch (error) {
+          console.error('Failed to load cards:', error);
+          state.cards = [];
+        }
+      },
+
+      async loadAll() {
+        await Promise.all([
+          this.loadMessages(),
+          this.loadLetters(),
+          this.loadCards()
+        ]);
+      }
+    };
+
+    // ==================== Messages Module ====================
+    const messagesModule = {
+      init() {
+        this.showRandomMessage();
+        document.getElementById('message-refresh').addEventListener('click', () => {
+          this.showRandomMessage();
+        });
+      },
+
+      showRandomMessage() {
+        if (state.messages.length === 0) return;
+
+        const randomIndex = Math.floor(Math.random() * state.messages.length);
+        const message = state.messages[randomIndex];
+        state.currentMessage = message;
+
+        document.getElementById('message-content').textContent = message.content;
+        document.getElementById('message-author').textContent = message.author;
+        document.getElementById('message-date').textContent = message.date;
+      }
+    };
+
+    // ==================== Letters Module ====================
+    const lettersModule = {
+      init() {
+        this.renderList();
+      },
+
+      renderList() {
+        const listView = document.getElementById('letters-list-view');
+        listView.innerHTML = '';
+
+        if (state.letters.length === 0) {
+          listView.innerHTML = '<p style="text-align: center; color: var(--color-muted);">暫無信件</p>';
+          return;
+        }
+
+        state.letters.forEach((letter, index) => {
+          const item = document.createElement('div');
+          item.className = 'letter-item';
+          item.innerHTML = `
+            <h3 class="letter-title">${letter.title}</h3>
+            <p class="letter-date">${letter.date}</p>
+            <p class="letter-preview">${letter.preview}</p>
+          `;
+          item.addEventListener('click', () => this.showDetail(index));
+          listView.appendChild(item);
+        });
+      },
+
+      async showDetail(index) {
+        state.currentLetterIndex = index;
+        const letter = state.letters[index];
+
+        // Fetch letter content
+        try {
+          const response = await fetch(letter.file);
+          const markdown = await response.text();
+          const html = marked.parse(markdown);
+
+          document.getElementById('letter-detail-title').textContent = letter.title;
+          document.getElementById('letter-detail-date').textContent = letter.date;
+          document.getElementById('letter-detail-content').innerHTML = html;
+
+          // Update navigation buttons
+          document.getElementById('letter-prev').disabled = index === state.letters.length - 1;
+          document.getElementById('letter-next').disabled = index === 0;
+
+          // Show detail view
+          document.getElementById('letters-list-view').classList.add('hidden');
+          document.getElementById('letter-detail-view').classList.remove('hidden');
+        } catch (error) {
+          console.error('Failed to load letter:', error);
+          alert('無法載入信件內容');
+        }
+      },
+
+      hideDetail() {
+        document.getElementById('letters-list-view').classList.remove('hidden');
+        document.getElementById('letter-detail-view').classList.add('hidden');
+        state.currentLetterIndex = -1;
+      },
+
+      setupNavigation() {
+        document.getElementById('letter-back').addEventListener('click', () => {
+          this.hideDetail();
+        });
+
+        document.getElementById('letter-prev').addEventListener('click', () => {
+          if (state.currentLetterIndex < state.letters.length - 1) {
+            this.showDetail(state.currentLetterIndex + 1);
+          }
+        });
+
+        document.getElementById('letter-next').addEventListener('click', () => {
+          if (state.currentLetterIndex > 0) {
+            this.showDetail(state.currentLetterIndex - 1);
+          }
+        });
+      }
+    };
+
+    // ==================== Cards Module ====================
+    const cardsModule = {
+      init() {
+        this.renderCards();
+      },
+
+      renderCards() {
+        const grid = document.getElementById('cards-grid');
+        grid.innerHTML = '';
+
+        if (state.cards.length === 0) {
+          grid.innerHTML = '<p style="text-align: center; color: var(--color-muted); grid-column: 1/-1;">暫無賀卡</p>';
+          return;
+        }
+
+        state.cards.forEach(card => {
+          const wrapper = document.createElement('div');
+          wrapper.className = 'card-wrapper';
+          wrapper.innerHTML = `
+            <div class="card-inner">
+              <div class="card-face card-front style-${card.style}">
+                <h3 class="card-front-title">${card.title}</h3>
+                <p class="card-festival">${card.festival}</p>
+              </div>
+              <div class="card-face card-back">
+                <div class="card-back-content">${card.content}</div>
+              </div>
+            </div>
+          `;
+
+          wrapper.addEventListener('click', () => {
+            wrapper.classList.toggle('flipped');
+          });
+
+          grid.appendChild(wrapper);
+        });
+      }
+    };
+
+    // ==================== Tab Navigation ====================
+    const tabNavigation = {
+      init() {
+        const navItems = document.querySelectorAll('.nav-item');
+
+        navItems.forEach(item => {
+          item.addEventListener('click', () => {
+            const tab = item.dataset.tab;
+            this.switchTab(tab);
+          });
+        });
+      },
+
+      switchTab(tabName) {
+        // Update nav items
+        document.querySelectorAll('.nav-item').forEach(item => {
+          item.classList.toggle('active', item.dataset.tab === tabName);
+        });
+
+        // Update content panels
+        document.querySelectorAll('.content-panel').forEach(panel => {
+          panel.classList.remove('active');
+        });
+        document.getElementById(`panel-${tabName}`).classList.add('active');
+
+        state.activeTab = tabName;
+
+        // Hide letter detail if switching away from letters
+        if (tabName !== 'letters') {
+          lettersModule.hideDetail();
         }
       }
+    };
 
-      btn.addEventListener('click', check);
-    })();
+    // ==================== Main App ====================
+    const app = {
+      async init() {
+        await dataLoader.loadAll();
+
+        messagesModule.init();
+        lettersModule.init();
+        lettersModule.setupNavigation();
+        cardsModule.init();
+        tabNavigation.init();
+      }
+    };
+
+    // ==================== Initialize ====================
+    document.addEventListener('DOMContentLoaded', () => {
+      passwordGate.init();
+    });
   </script>
 </body>
 </html>
-

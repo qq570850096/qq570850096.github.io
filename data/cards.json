@@ -1,0 +1,26 @@
+[
+  {
+    "id": "card-teacher-2025",
+    "title": "教師節快樂",
+    "festival": "教師節",
+    "date": "2025-09-10",
+    "style": "bamboo",
+    "content": "師恩難忘，桃李芬芳。\n願您歲歲年年，\n桃李滿天下，春暉遍四方。"
+  },
+  {
+    "id": "card-midautumn-2025",
+    "title": "中秋悅神",
+    "festival": "中秋節",
+    "date": "2025-10-06",
+    "style": "moon",
+    "content": "海上生明月，天涯共此時。\n願花常好，人常健，月常圓。"
+  },
+  {
+    "id": "card-newyear-2026",
+    "title": "歲歲平安",
+    "festival": "春節",
+    "date": "2026-02-17",
+    "style": "red",
+    "content": "爆竹聲中一歲除，\n春風送暖入屠蘇。\n願新歲平安，萬事勝意。"
+  }
+]
