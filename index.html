@@ -566,6 +566,28 @@
       transition: transform 0.3s ease;
     }
 
+    /* 悬停时印章放大旋转 */
+    .card-wrapper:hover .card-front.style-bamboo::after {
+      transform: rotate(-5deg) scale(1.1);
+    }
+
+    .card-wrapper:hover .card-front.style-red::after {
+      transform: rotate(-8deg) scale(1.15);
+    }
+
+    .card-wrapper:hover .card-front.style-moon::after {
+      transform: rotate(8deg) scale(1.1);
+    }
+
+    .card-wrapper:hover .card-front.style-christmas::after {
+      transform: rotate(-15deg) scale(1.12);
+      animation: snowRotate 4s linear infinite;
+    }
+
+    .card-wrapper:hover .card-front.style-newyear::after {
+      transform: rotate(12deg) scale(1.1);
+    }
+
     .card-inner {
       position: relative;
       width: 100%;
@@ -592,6 +614,38 @@
       justify-content: center;
       padding: 40px;
       overflow: hidden;
+      position: relative;
+    }
+
+    /* 流光边框效果 */
+    .card-face::before {
+      content: '';
+      position: absolute;
+      top: -2px;
+      left: -2px;
+      right: -2px;
+      bottom: -2px;
+      background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.6),
+        transparent
+      );
+      border-radius: 20px;
+      opacity: 0;
+      transition: opacity 0.5s ease;
+      animation: shimmer 3s linear infinite;
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    .card-wrapper:hover .card-face::before {
+      opacity: 0.8;
+    }
+
+    @keyframes shimmer {
+      0% { transform: translateX(-100%) rotate(45deg); }
+      100% { transform: translateX(200%) rotate(45deg); }
     }
 
     .card-front {
@@ -616,6 +670,34 @@
       animation: float 6s ease-in-out infinite;
     }
 
+    /* 竹青印章 */
+    .card-front.style-bamboo::after {
+      content: '桃李';
+      position: absolute;
+      bottom: 20px;
+      right: 20px;
+      width: 60px;
+      height: 60px;
+      background: radial-gradient(circle, rgba(90, 135, 118, 0.2), rgba(90, 135, 118, 0.4));
+      border: 2px solid var(--color-bamboo);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Ma Shan Zheng', cursive;
+      font-size: 1.3rem;
+      color: var(--color-bamboo);
+      font-weight: 700;
+      transform: rotate(-5deg);
+      opacity: 0.85;
+      box-shadow: 0 4px 12px rgba(90, 135, 118, 0.3);
+      transition: all 0.4s ease;
+      letter-spacing: 0.3em;
+      text-indent: 0.3em;
+      writing-mode: vertical-rl;
+      line-height: 1;
+    }
+
     /* 朱红风格 - 春节 */
     .card-front.style-red {
       border-color: var(--color-red);
@@ -630,6 +712,30 @@
       bottom: -20px;
       left: -20px;
       animation: rotate 10s linear infinite;
+    }
+
+    /* 春节朱红印章 */
+    .card-front.style-red::after {
+      content: '福';
+      position: absolute;
+      bottom: 20px;
+      right: 20px;
+      width: 60px;
+      height: 60px;
+      background: radial-gradient(circle, rgba(200, 55, 45, 0.25), rgba(200, 55, 45, 0.4));
+      border: 2px solid var(--color-red);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Ma Shan Zheng', cursive;
+      font-size: 2rem;
+      color: var(--color-red);
+      font-weight: 700;
+      transform: rotate(-8deg);
+      opacity: 0.9;
+      box-shadow: 0 4px 12px rgba(200, 55, 45, 0.4);
+      transition: all 0.4s ease;
     }
 
     /* 月白风格 - 中秋 */
@@ -647,6 +753,34 @@
       left: 50%;
       transform: translate(-50%, -50%);
       animation: glow 3s ease-in-out infinite alternate;
+    }
+
+    /* 月白印章 */
+    .card-front.style-moon::after {
+      content: '月圓';
+      position: absolute;
+      bottom: 20px;
+      right: 20px;
+      width: 60px;
+      height: 60px;
+      background: radial-gradient(circle, rgba(212, 165, 116, 0.2), rgba(212, 165, 116, 0.4));
+      border: 2px solid #d4a574;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Ma Shan Zheng', cursive;
+      font-size: 1.3rem;
+      color: #d4a574;
+      font-weight: 700;
+      transform: rotate(8deg);
+      opacity: 0.9;
+      box-shadow: 0 4px 12px rgba(212, 165, 116, 0.35);
+      transition: all 0.4s ease;
+      letter-spacing: 0.3em;
+      text-indent: 0.3em;
+      writing-mode: vertical-rl;
+      line-height: 1;
     }
 
     /* 圣诞风格 */
@@ -674,6 +808,34 @@
       pointer-events: none;
     }
 
+    /* 圣诞雪花印记 - 使用SVG背景 */
+    .card-wrapper .card-front.style-christmas::after {
+      content: '❄';
+      position: absolute;
+      bottom: 20px;
+      right: 20px;
+      width: 60px;
+      height: 60px;
+      background: radial-gradient(circle, rgba(255, 255, 255, 0.25), rgba(255, 255, 255, 0.15));
+      border: 2px solid rgba(255, 255, 255, 0.6);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      color: rgba(255, 255, 255, 0.9);
+      transform: rotate(-15deg);
+      opacity: 0.85;
+      box-shadow: 0 4px 16px rgba(255, 255, 255, 0.3);
+      transition: all 0.4s ease;
+      animation: snowRotate 8s linear infinite;
+    }
+
+    @keyframes snowRotate {
+      0%, 100% { transform: rotate(-15deg); }
+      50% { transform: rotate(15deg); }
+    }
+
     /* 元旦风格 */
     .card-front.style-newyear {
       border-color: #ff6f00;
@@ -695,6 +857,40 @@
       background-size: 200% 200%;
       animation: fireworks 4s ease-in-out infinite;
       pointer-events: none;
+    }
+
+    /* 元旦金色印章 */
+    .card-wrapper .card-front.style-newyear::after {
+      content: '新年';
+      position: absolute;
+      bottom: 20px;
+      right: 20px;
+      width: 60px;
+      height: 60px;
+      background: radial-gradient(circle, rgba(255, 215, 0, 0.3), rgba(255, 215, 0, 0.15));
+      border: 2px solid #ffd700;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Ma Shan Zheng', cursive;
+      font-size: 1.3rem;
+      color: #ffd700;
+      font-weight: 700;
+      transform: rotate(12deg);
+      opacity: 0.9;
+      box-shadow: 0 4px 16px rgba(255, 215, 0, 0.5), 0 0 20px rgba(255, 215, 0, 0.3);
+      transition: all 0.4s ease;
+      letter-spacing: 0.3em;
+      text-indent: 0.3em;
+      writing-mode: vertical-rl;
+      line-height: 1;
+      animation: newYearGlow 2s ease-in-out infinite alternate;
+    }
+
+    @keyframes newYearGlow {
+      0% { box-shadow: 0 4px 16px rgba(255, 215, 0, 0.4), 0 0 15px rgba(255, 215, 0, 0.2); }
+      100% { box-shadow: 0 4px 20px rgba(255, 215, 0, 0.6), 0 0 30px rgba(255, 215, 0, 0.4); }
     }
 
     .card-back {
@@ -896,7 +1092,10 @@
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
-      animation: titleFadeIn 0.8s ease 0.3s both;
+      -webkit-text-stroke: 1px rgba(92, 64, 51, 0.1);
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+      animation: titleFadeIn 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) 0.3s both;
+      letter-spacing: 0.1em;
     }
 
     .card-modal-festival {
@@ -921,7 +1120,8 @@
       line-height: 2.2;
       color: var(--color-ink);
       white-space: pre-line;
-      animation: messageFadeIn 1s ease 0.6s both;
+      animation: messageFadeIn 1s cubic-bezier(0.34, 1.56, 0.64, 1) 0.6s both;
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.05);
     }
 
     /* 节日主题样式 */
@@ -998,13 +1198,20 @@
     }
 
     @keyframes modalSlideIn {
-      from {
+      0% {
         opacity: 0;
-        transform: scale(0.8) translateY(40px);
+        transform: scale(0.7) translateY(60px) rotate(-5deg);
       }
-      to {
+      60% {
         opacity: 1;
-        transform: scale(1) translateY(0);
+        transform: scale(1.05) translateY(-10px) rotate(2deg);
+      }
+      80% {
+        transform: scale(0.98) translateY(5px) rotate(-1deg);
+      }
+      100% {
+        opacity: 1;
+        transform: scale(1) translateY(0) rotate(0deg);
       }
     }
 
@@ -1420,7 +1627,7 @@
         listView.innerHTML = '';
 
         if (state.letters.length === 0) {
-          listView.innerHTML = '<p style="text-align: center; color: var(--color-muted);">暫無信件</p>';
+          listView.innerHTML = '<p style="text-align: center; color: var(--color-muted);">信件在路上</p>';
           return;
         }
 
@@ -1623,6 +1830,34 @@
 
       // SVG动画模板
       getBambooSVG() {
+        // 生成竹叶飘落粒子
+        const bambooLeaves = [];
+        for (let i = 0; i < 25; i++) {
+          const x = Math.random() * 600;
+          const y = -Math.random() * 100;
+          const size = Math.random() * 15 + 10;
+          const duration = Math.random() * 4 + 5;
+          const delay = Math.random() * 3;
+          const swayDistance = Math.random() * 40 + 20;
+
+          bambooLeaves.push(`
+            <g opacity="0.7">
+              <ellipse cx="${x}" cy="${y}" rx="${size}" ry="${size * 2}" fill="#4caf50">
+                <animate attributeName="cy" from="${y}" to="450"
+                  dur="${duration}s" begin="${delay}s" repeatCount="indefinite"/>
+                <animate attributeName="cx"
+                  values="${x};${x + swayDistance};${x - swayDistance};${x}"
+                  dur="${duration}s" begin="${delay}s" repeatCount="indefinite"/>
+                <animateTransform attributeName="transform" type="rotate"
+                  values="0 ${x} ${y};360 ${x} ${y}"
+                  dur="${duration * 0.8}s" begin="${delay}s" repeatCount="indefinite"/>
+                <animate attributeName="opacity" values="0.7;0.4;0.7"
+                  dur="${duration}s" begin="${delay}s" repeatCount="indefinite"/>
+              </ellipse>
+            </g>
+          `);
+        }
+
         return `
           <svg viewBox="0 0 600 400" style="width: 100%; height: 100%;">
             <defs>
@@ -1631,6 +1866,7 @@
                 <stop offset="100%" style="stop-color:#2e7d32;stop-opacity:0.6" />
               </linearGradient>
             </defs>
+            ${bambooLeaves.join('')}
             <g class="bamboo-group">
               <rect x="50" y="50" width="15" height="80" fill="url(#bambooGrad)" rx="7">
                 <animate attributeName="height" values="80;90;80" dur="3s" repeatCount="indefinite"/>
@@ -1664,6 +1900,42 @@
       },
 
       getMoonSVG() {
+        // 生成桂花飘落粒子
+        const flowers = [];
+        for (let i = 0; i < 20; i++) {
+          const x = Math.random() * 600;
+          const y = -Math.random() * 150;
+          const size = Math.random() * 4 + 3;
+          const duration = Math.random() * 5 + 6;
+          const delay = Math.random() * 4;
+
+          flowers.push(`
+            <circle cx="${x}" cy="${y}" r="${size}" fill="#ffd700" opacity="0.8">
+              <animate attributeName="cy" from="${y}" to="450"
+                dur="${duration}s" begin="${delay}s" repeatCount="indefinite"/>
+              <animate attributeName="opacity" values="0;0.8;0.6;0"
+                dur="${duration}s" begin="${delay}s" repeatCount="indefinite"/>
+            </circle>
+          `);
+        }
+
+        // 生成星光粒子
+        const stars = [];
+        for (let i = 0; i < 15; i++) {
+          const x = Math.random() * 600;
+          const y = Math.random() * 400;
+          const delay = Math.random() * 3;
+
+          stars.push(`
+            <circle cx="${x}" cy="${y}" r="2" fill="#fff8e1" opacity="0">
+              <animate attributeName="opacity" values="0;1;0"
+                dur="2s" begin="${delay}s" repeatCount="indefinite"/>
+              <animate attributeName="r" values="1;3;1"
+                dur="2s" begin="${delay}s" repeatCount="indefinite"/>
+            </circle>
+          `);
+        }
+
         return `
           <svg viewBox="0 0 600 400" style="width: 100%; height: 100%;">
             <defs>
@@ -1672,35 +1944,87 @@
                 <stop offset="100%" style="stop-color:#ffecb3;stop-opacity:0.3" />
               </radialGradient>
             </defs>
+            <!-- 月光光束 -->
+            <rect x="280" y="0" width="40" height="400" fill="url(#moonGrad)" opacity="0.15">
+              <animate attributeName="opacity" values="0.1;0.25;0.1" dur="5s" repeatCount="indefinite"/>
+            </rect>
+            <!-- 月亮主体 -->
             <circle cx="300" cy="200" r="80" fill="url(#moonGrad)" opacity="0.4">
               <animate attributeName="r" values="80;90;80" dur="4s" repeatCount="indefinite"/>
               <animate attributeName="opacity" values="0.4;0.6;0.4" dur="4s" repeatCount="indefinite"/>
             </circle>
+            <!-- 外层光晕 -->
+            <circle cx="300" cy="200" r="100" fill="none" stroke="#ffecb3" stroke-width="2" opacity="0.3">
+              <animate attributeName="r" values="100;120;100" dur="4s" repeatCount="indefinite"/>
+              <animate attributeName="opacity" values="0.3;0.5;0.3" dur="4s" repeatCount="indefinite"/>
+            </circle>
+            ${flowers.join('')}
+            ${stars.join('')}
           </svg>
         `;
       },
 
       getChristmasSVG() {
         const snowflakes = [];
-        for (let i = 0; i < 30; i++) {
+        const snowShapes = ['circle', 'star'];
+
+        for (let i = 0; i < 50; i++) {
           const x = Math.random() * 600;
-          const y = Math.random() * 400;
-          const size = Math.random() * 3 + 2;
-          const duration = Math.random() * 3 + 2;
-          const delay = Math.random() * 2;
+          const y = -Math.random() * 200;
+          const size = Math.random() * 4 + 2;
+          const duration = Math.random() * 4 + 3;
+          const delay = Math.random() * 3;
+          const swayDistance = Math.random() * 30 + 10;
+          const rotationSpeed = Math.random() * 3 + 2;
 
           snowflakes.push(`
-            <circle cx="${x}" cy="${y}" r="${size}" fill="white" opacity="0.8">
-              <animate attributeName="cy" from="-20" to="420"
-                dur="${duration}s" begin="${delay}s" repeatCount="indefinite"/>
-              <animate attributeName="opacity" values="0;0.8;0"
-                dur="${duration}s" begin="${delay}s" repeatCount="indefinite"/>
-            </circle>
+            <g>
+              <circle cx="${x}" cy="${y}" r="${size}" fill="white" opacity="0.9">
+                <animate attributeName="cy" from="${y}" to="450"
+                  dur="${duration}s" begin="${delay}s" repeatCount="indefinite"/>
+                <animate attributeName="cx"
+                  values="${x};${x + swayDistance};${x - swayDistance};${x}"
+                  dur="${duration}s" begin="${delay}s" repeatCount="indefinite"/>
+                <animateTransform attributeName="transform" type="rotate"
+                  from="0 ${x} ${y}" to="360 ${x} ${y}"
+                  dur="${rotationSpeed}s" begin="${delay}s" repeatCount="indefinite"/>
+                <animate attributeName="opacity" values="0;0.9;0.7;0"
+                  dur="${duration}s" begin="${delay}s" repeatCount="indefinite"/>
+              </circle>
+              <!-- 雪花形状装饰 -->
+              <line x1="${x-size}" y1="${y}" x2="${x+size}" y2="${y}" stroke="white" stroke-width="0.5" opacity="0.8">
+                <animate attributeName="y1" from="${y}" to="450"
+                  dur="${duration}s" begin="${delay}s" repeatCount="indefinite"/>
+                <animate attributeName="y2" from="${y}" to="450"
+                  dur="${duration}s" begin="${delay}s" repeatCount="indefinite"/>
+                <animate attributeName="opacity" values="0;0.8;0"
+                  dur="${duration}s" begin="${delay}s" repeatCount="indefinite"/>
+              </line>
+            </g>
           `);
         }
 
+        // 北极光效果
+        const aurora = `
+          <defs>
+            <linearGradient id="auroraGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" style="stop-color:#4caf50;stop-opacity:0.3" />
+              <stop offset="50%" style="stop-color:#81c784;stop-opacity:0.2" />
+              <stop offset="100%" style="stop-color:transparent;stop-opacity:0" />
+            </linearGradient>
+          </defs>
+          <path d="M0,100 Q150,80 300,100 T600,100 L600,0 L0,0 Z" fill="url(#auroraGrad)">
+            <animate attributeName="d"
+              values="M0,100 Q150,80 300,100 T600,100 L600,0 L0,0 Z;
+                      M0,120 Q150,100 300,80 T600,120 L600,0 L0,0 Z;
+                      M0,100 Q150,80 300,100 T600,100 L600,0 L0,0 Z"
+              dur="8s" repeatCount="indefinite"/>
+          </path>
+        `;
+
         return `
           <svg viewBox="0 0 600 400" style="width: 100%; height: 100%;">
+            ${aurora}
             ${snowflakes.join('')}
           </svg>
         `;
@@ -1708,34 +2032,66 @@
 
       getNewYearSVG() {
         const fireworks = [];
-        const colors = ['#ffd700', '#ff6b6b', '#4ecdc4', '#ff66d9'];
+        const colors = ['#ffd700', '#ff6b6b', '#4ecdc4', '#ff66d9', '#00e676', '#ffeb3b'];
 
-        for (let i = 0; i < 6; i++) {
+        // 多层烟花效果
+        for (let i = 0; i < 10; i++) {
           const cx = Math.random() * 500 + 50;
           const cy = Math.random() * 300 + 50;
           const color = colors[Math.floor(Math.random() * colors.length)];
-          const delay = Math.random() * 2;
+          const delay = Math.random() * 3;
+          const duration = Math.random() * 1 + 1.5;
 
+          // 主爆炸圆环
           fireworks.push(`
             <g>
               <circle cx="${cx}" cy="${cy}" r="0" fill="${color}" opacity="0.8">
-                <animate attributeName="r" values="0;40;0" dur="2s" begin="${delay}s" repeatCount="indefinite"/>
-                <animate attributeName="opacity" values="0.8;0;0.8" dur="2s" begin="${delay}s" repeatCount="indefinite"/>
+                <animate attributeName="r" values="0;50;60" dur="${duration}s" begin="${delay}s" repeatCount="indefinite"/>
+                <animate attributeName="opacity" values="0.8;0.3;0" dur="${duration}s" begin="${delay}s" repeatCount="indefinite"/>
               </circle>
-              ${[0, 72, 144, 216, 288].map(angle => `
-                <circle cx="${cx}" cy="${cy}" r="2" fill="${color}">
-                  <animateTransform attributeName="transform" type="translate"
-                    values="0,0; ${Math.cos(angle * Math.PI / 180) * 50},${Math.sin(angle * Math.PI / 180) * 50}"
-                    dur="2s" begin="${delay}s" repeatCount="indefinite"/>
-                  <animate attributeName="opacity" values="1;0" dur="2s" begin="${delay}s" repeatCount="indefinite"/>
-                </circle>
-              `).join('')}
-            </g>
+              <!-- 内层光晕 -->
+              <circle cx="${cx}" cy="${cy}" r="0" fill="${color}" opacity="0.6">
+                <animate attributeName="r" values="0;30;40" dur="${duration}s" begin="${delay}s" repeatCount="indefinite"/>
+                <animate attributeName="opacity" values="0.6;0;0" dur="${duration}s" begin="${delay}s" repeatCount="indefinite"/>
+              </circle>
+          `);
+
+          // 12个方向的粒子射线
+          for (let angle = 0; angle < 360; angle += 30) {
+            const distance = Math.random() * 30 + 50;
+            fireworks.push(`
+              <circle cx="${cx}" cy="${cy}" r="3" fill="${color}">
+                <animateTransform attributeName="transform" type="translate"
+                  values="0,0; ${Math.cos(angle * Math.PI / 180) * distance},${Math.sin(angle * Math.PI / 180) * distance}"
+                  dur="${duration}s" begin="${delay}s" repeatCount="indefinite"/>
+                <animate attributeName="opacity" values="1;0.5;0" dur="${duration}s" begin="${delay}s" repeatCount="indefinite"/>
+                <animate attributeName="r" values="3;1;0" dur="${duration}s" begin="${delay}s" repeatCount="indefinite"/>
+              </circle>
+            `);
+          }
+
+          fireworks.push(`</g>`);
+        }
+
+        // 星光闪烁背景
+        const starField = [];
+        for (let i = 0; i < 30; i++) {
+          const x = Math.random() * 600;
+          const y = Math.random() * 400;
+          const delay = Math.random() * 2;
+          const color = colors[Math.floor(Math.random() * colors.length)];
+
+          starField.push(`
+            <circle cx="${x}" cy="${y}" r="1.5" fill="${color}" opacity="0">
+              <animate attributeName="opacity" values="0;1;0" dur="1.5s" begin="${delay}s" repeatCount="indefinite"/>
+              <animate attributeName="r" values="1;2.5;1" dur="1.5s" begin="${delay}s" repeatCount="indefinite"/>
+            </circle>
           `);
         }
 
         return `
           <svg viewBox="0 0 600 400" style="width: 100%; height: 100%;">
+            ${starField.join('')}
             ${fireworks.join('')}
           </svg>
         `;
